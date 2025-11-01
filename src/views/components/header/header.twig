@@ -1,16 +1,12 @@
-{#
-| Variable         | Type    | Description                     |
-|------------------|---------|---------------------------------|
-| cart             | object  |                                 |
-| cart.items_count | int     |                                 |
-| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
-#}
+{# ... نفس التعليقات بالأعلى ... #}
 {% set important_links = theme.settings.get('important_links') %}
+
 <header class="store-header">
   {# Top Nav #}
-  <div class="top-navbar">
-    <div class="container flex justify-between">
+  <div class="top-navbar etra-pill-bgfix">
+    <div class="container flex justify-between etra-pill">
       <div class="flex-1 flex items-center gap-2">
+      <div style="color:#fff;background:#f00;padding:4px 8px;border-radius:6px;">ETRA TEST</div>حsa
           {# Footer Menu #}
           {% if important_links %}
             <salla-menu source="footer" topnav></salla-menu>
@@ -46,10 +42,10 @@
   </div>
 
   {# Main Nav #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white flex items-center">
+  <div id="mainnav" class="main-nav-container etra-pill-bgfix">
       <div class="inner bg-inherit w-full">
           <div class="container">
-              <div class="flex items-stretch justify-between relative">
+              <div class="flex items-stretch justify-between relative etra-pill">
                   <div class="flex items-center">
                       <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
                         <i class="sicon-menu text-primary text-2xl"></i>
@@ -64,16 +60,22 @@
                       </a>
                       <custom-main-menu></custom-main-menu>
                   </div>
-                  <div class="flex items-center justify-end my-2.5">
+
+                  <div class="flex items-center justify-end my-2.5 relative">
                       {% if user.type=='user' %}
                         <salla-user-menu avatar-only show-header></salla-user-menu>
                       {% else %}
-                          <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
+                          <button class="header-btn icon-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
                             <i class="header-btn__icon sicon-user-circle"></i>
                           </button>
                       {% endif %}
-                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
+
+                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 relative">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+                        {# badge اختياري لو تبينه يطلع فوق الأيقونة #}
+                        {% if cart.items_count and cart.items_count > 0 %}
+                          <span class="cart-badge">{{ cart.items_count }}</span>
+                        {% endif %}
                       </salla-cart-summary>
                   </div>
               </div>
@@ -81,6 +83,7 @@
       </div>
   </div>
 </header>
+
 {% if store.scope %}
-    <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
+  <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}

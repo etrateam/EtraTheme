@@ -92,3 +92,34 @@
 
 @import 'lite-youtube-embed/src/lite-yt-embed.css';
 @import 'mmenu-light/dist/mmenu-light.css';
+/* === ETRA Header (glass + pill) === */
+.store-header { position: sticky; top: 8px; z-index: 50; }
+
+.etra-pill {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(17,17,22,.60);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+/* نخلي الخلفيات الأصلية شفافة عند وجود etra-pill */
+.etra-pill-bgfix { background: transparent !important; box-shadow: none !important; }
+
+/* أزرار صغيرة للعمليات في اليمين */
+.icon-btn { width:38px; height:38px; display:grid; place-items:center;
+  border-radius: 10px; border:1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04); }
+.header-btn, .btn--rounded-gray { border-radius: 12px; }
+
+/* زر CTA متدرّج */
+.etra-cta, .salla-button-primary, .btn-primary {
+  background: linear-gradient(105deg, var(--etra-primary-1, #5234B7), var(--etra-primary-2, #9E59CD));
+  color:#fff; border:none; box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+.cart-badge { position:absolute; top:-6px; inset-inline-end:-6px; min-width:20px; height:20px;
+  border-radius:999px; padding:0 6px; display:grid; place-items:center; font-size:.75rem; color:#fff;
+  background: linear-gradient(105deg, var(--etra-primary-1, #5234B7), var(--etra-primary-2, #9E59CD));
+  border:1px solid rgba(255,255,255,.2);
+}
